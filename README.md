@@ -60,7 +60,7 @@ python preprocessing.py
 ```
 Optional arguments:
 ```
---dataset_folder', type=str, default='./OCT_dataset', help='path to dataset folder')
+--dataset_folder', type=str, default='./OCTDL_folder', help='path to dataset folder')
 --output_folder', type=str, default='./dataset', help='path to output folder')
 --crop_ratio', type=int, default=1, help='central crop ratio of image')
 --image_dim', type=int, default=512, help='final dimensions of image')
