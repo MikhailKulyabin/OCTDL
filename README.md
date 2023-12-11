@@ -21,7 +21,7 @@ The dataset consists of the following categories and images:
 - Vitreomacular Interface Disease - 58 images.
 
 
-> Mikhail Kulyabin, Aleksei Zhdanov, Vasilii Borisov, Mikhail Ronkin, Stepichev Andrey, Kuznetsova Anna, Nikiforova Anastasia, Bogachev Alexander, Korotkich Sergey, June 9, 2023, "OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods", 
+> Mikhail Kulyabin, Aleksei Zhdanov, Nikiforova Anastasia, Stepichev Andrey, Kuznetsova Anna, Vasilii Borisov, Mikhail Ronkin, Bogachev Alexander, Korotkich Sergey, June 9, 2023, "OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods", 
 > IEEE Dataport, doi: [[link](https://dx.doi.org/10.21227/fpvs-8n55)]
 
 Requirements:
@@ -96,7 +96,7 @@ python3 main.py train.network=resnet50,vgg16 -m
 @data{fpvs-8n55-23,
 doi = {10.21227/fpvs-8n55},
 url = {https://dx.doi.org/10.21227/fpvs-8n55},
-author = {Kulyabin, Mikhail and Zhdanov, Aleksei and Borisov, Vasilii and Ronkin, Mikhail and Andrey, Stepichev and Anna, Kuznetsova and Anastasia, Nikiforova and Alexander, Bogachev and Sergey, Korotkich},
+author = {Kulyabin, Mikhail and Zhdanov, Aleksei and Anastasia, Nikiforova and Andrey, Stepichev and Anna, Kuznetsova and Borisov, Vasilii and Ronkin, Mikhail and Alexander, Bogachev and Sergey, Korotkich},
 publisher = {IEEE Dataport},
 title = {OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods},
 year = {2023} } 
