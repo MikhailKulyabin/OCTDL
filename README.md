@@ -17,7 +17,7 @@ The dataset consists of the following categories and images:
 - Epiretinal Membrane- 133 images;
 - Normal - 284 images;
 - Retinal Artery Occlusion - 22 images;
-- Retinal Artery Occlusion - 93 images;
+- Retinal Vein Occlusion - 93 images;
 - Vitreomacular Interface Disease - 58 images.
 
 
