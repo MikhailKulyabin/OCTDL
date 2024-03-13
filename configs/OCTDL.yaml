@@ -1,0 +1,97 @@
+base:
+  data_path: ./dataset
+  save_path: ./run
+  device: cuda
+  random_seed: 0
+  overwrite: false # overwrite save_path
+  progress: true
+  cudnn_deterministic: False
+data:
+  num_classes: 7
+  input_size: 224
+  in_channels: 3
+  mean: auto
+  std: auto
+  sampling_strategy: class_balanced
+  sampling_weights_decay_rate: 0.9
+  data_augmentation:
+    - random_crop
+    - horizontal_flip
+    - vertical_flip
+    - color_distortion
+    - rotation
+    - translation
+    - gaussian_blur
+train:
+  network: vgg16
+  pretrained: true
+  checkpoint: null
+  epochs: &epochs 100
+  batch_size: 64
+  num_workers: 8
+  criterion: cross_entropy
+  loss_weight: null
+  loss_weight_decay_rate: 0
+  warmup_epochs: 0
+  metrics: [acc, f1, auc, precision, recall]
+  indicator: acc
+  save_interval: 5
+  eval_interval: 1
+  sample_view: false
+  pin_memory: true
+solver:
+  optimizer: ADAM # SGD / ADAM / ADAMW
+  learning_rate: 0.0003
+  lr_scheduler: cosine
+  momentum: 0.9 # only for SGD
+  nesterov: true # only for SGD
+  weight_decay: 0.0005
+  adamw_betas: [0.9, 0.999] # only for ADAMW
+criterion_args:
+  cross_entropy: {}
+scheduler_args:
+  exponential:
+    gamma: 0.6
+  multiple_steps:
+    milestones: [15, 25, 45]
+    gamma: 0.1
+  cosine:
+    T_max: *epochs
+    eta_min: 0
+  reduce_on_plateau:
+    mode: min
+    factor: 0.1
+    patience: 5
+    threshold: 0.0001
+    eps: 0.00001
+  clipped_cosine:
+    T_max: *epochs
+    min_lr: 0.0001
+data_augmentation_args:
+  horizontal_flip:
+    prob: 0.5
+  vertical_flip:
+    prob: 0.5
+  color_distortion:
+    prob: 0.5
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.2
+  random_crop:
+    prob: 0.5
+    scale: [0.87, 1.15]
+    ratio: [0.65, 1.3]
+  rotation:
+    prob: 0.5
+    degrees: [-180, 180]
+  translation:
+    prob: 0.5
+    range: [0.2, 0.2]
+  grayscale:
+    prob: 0.5
+  gaussian_blur:
+    prob: 0.2
+    kernel_size: 7
+    sigma: 0.6
+  value_fill: 0
