@@ -8,18 +8,19 @@ from math import ceil
 import argparse
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
+import pandas as pd
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset_folder', type=str, default='./OCTDL_folder', help='path to OCTDL folder')
-parser.add_argument('--output_folder', type=str, default='./datasets/OCTDL', help='path to output folder')
+parser.add_argument('--dataset_folder', type=str, default='./OCTDL_dataset', help='path to dataset folder')
+parser.add_argument('--labels_path', type=str, default='./OCTDL_dataset/labels.csv', help='path to labels.csv')
+parser.add_argument('--output_folder', type=str, default='./dataset_1', help='path to output folder')
 parser.add_argument('--crop_ratio', type=int, default=1, help='central crop ratio of image')
 parser.add_argument('--image_dim', type=int, default=512, help='final dimensions of image')
-parser.add_argument('--val_ratio', type=float, default=0.1, help='validation size')
-parser.add_argument('--test_ratio', type=float, default=0.2, help='test size')
+parser.add_argument('--val_ratio', type=float, default=0.15, help='validation size')
+parser.add_argument('--test_ratio', type=float, default=0.25, help='test size')
 parser.add_argument('--padding', type=bool, default=False, help='padding to square')
 parser.add_argument('--crop', type=bool, default=False, help='crop')
 parser.add_argument('--resize', type=bool, default=False, help='resize')
-
 
 labels = ['AMD', 'DME', 'ERM', 'NO', 'RAO', 'RVO', 'VID']
 folders = ['train', 'val', 'test']
@@ -37,25 +38,39 @@ def main():
     padding_bool = args.padding
     crop_bool = args.crop
     resize_bool = args.resize
-
+    labels_path = args.labels_path
+    
+    df = pd.read_csv(labels_path)
+    
     for folder in folders:
         for label in labels:
             Path(os.path.join(output_folder, folder, label)).mkdir(parents=True, exist_ok=True)
-
+    
     for label in tqdm(labels):
-        file_names = [f for f in listdir(os.path.join(root_folder, label)) if isfile(join(os.path.join(root_folder, label), f))]
-
-        train_files, test_files = train_test_split(file_names, test_size=1 - train_ratio)
-        val_files, test_files = train_test_split(test_files, test_size=test_ratio / (test_ratio + val_ratio))
-
-        for file in test_files:
-            preprocessing(root_folder, output_folder, file, 'test', crop_ratio, dim, label, padding_bool, crop_bool, resize_bool)
-
-        for file in val_files:
-            preprocessing(root_folder, output_folder, file, 'val', crop_ratio, dim, label, padding_bool, crop_bool, resize_bool)
-
-        for file in train_files:
-            preprocessing(root_folder, output_folder, file, 'train', crop_ratio, dim, label, padding_bool, crop_bool, resize_bool)
+        df_label = df[df['disease'] == label][['file_name', 'disease', 'patient_id']]
+        patients_list = df_label.patient_id.unique()
+        train_patients, test_patients = train_test_split(patients_list, test_size=1 - train_ratio)
+        val_patients, test_patients = train_test_split(test_patients, test_size=test_ratio / (test_ratio + val_ratio))
+        df_label_train = df_label[df_label['patient_id'].isin(train_patients)]
+        df_label_val = df_label[df_label['patient_id'].isin(val_patients)]
+        df_label_test = df_label[df_label['patient_id'].isin(test_patients)]
+        
+        print(label, len(df_label_train), len(df_label_val), len(df_label_test))
+    
+        for i in range(0, len(df_label_train)):
+            file_name = df_label_train.iloc[i, 0] + '.jpg'
+            file_label = df_label_train.iloc[i, 1]    
+            preprocessing(root_folder, output_folder, file_name, 'train', crop_ratio, dim, file_label, padding_bool, crop_bool, resize_bool)
+ 
+        for i in range(0, len(df_label_test)):
+            file_name = df_label_test.iloc[i, 0] + '.jpg'
+            file_label = df_label_test.iloc[i, 1]    
+            preprocessing(root_folder, output_folder, file_name, 'test', crop_ratio, dim, file_label, padding_bool, crop_bool, resize_bool)    
+    
+        for i in range(0, len(df_label_val)):
+            file_name = df_label_val.iloc[i, 0] + '.jpg'
+            file_label = df_label_val.iloc[i, 1]    
+            preprocessing(root_folder, output_folder, file_name, 'val', crop_ratio, dim, file_label, padding_bool, crop_bool, resize_bool) 
 
 
 def preprocessing(root_folder, output_folder, file, folder, crop_ratio, dim, label, padding_bool, crop_bool, resize_bool):

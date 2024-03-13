@@ -1,6 +1,6 @@
-# OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods
+# Optical coherence tomography dataset classification
 
-Framework for 2D classification of OCT images.
+Framework for 2D classification of the OCT dataset.
 
 Optical coherence tomography (OCT) is an emerging technology for performing high-resolution cross-sectional imaging. 
 It utilizes the interferometry concept to create a cross-sectional map of the retina. 
@@ -10,18 +10,17 @@ OCT allows non-secondary visualization of various structures of the eye, includi
 and choroid, and to detect pathological changes in them. 
 The study of these images is essential for the diagnosis, treatment, and monitoring of various eye diseases.
 
-The dataset consists of the following categories and images:
+The database consists of the following categories and images:
 
-- Age-Related Macular Degeneration - 885 images;
-- Diabetic Macular Edema - 143 images;
-- Epiretinal Membrane- 133 images;
-- Normal - 284 images;
-- Retinal Artery Occlusion - 22 images;
-- Retinal Vein Occlusion - 93 images;
-- Vitreomacular Interface Disease - 58 images.
+- Age-related Macular Degeneration (AMD): 1231
+- Diabetic Macular Edema (DME): 147
+- Epiretinal Membrane (ERM): 155
+- Normal (NO): 332
+- Retinal Artery Occlusion (RAO): 22
+- Retinal Vein Occlusion (RVO): 101
+- Vitreomacular Interface Disease (VID): 76
 
-
-> Mikhail Kulyabin, Aleksei Zhdanov, Anastasia Nikiforova, Andrey Stepichev, Anna Kuznetsova, Vasilii Borisov, Mikhail Ronkin, Alexander Bogachev, Sergey Korotkich, June 9, 2023, "OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods", 
+> Mikhail Kulyabin, Aleksei Zhdanov, Vasilii Borisov, Mikhail Ronkin, Stepichev Andrey, Kuznetsova Anna, Nikiforova Anastasia, Bogachev Alexander, Korotkich Sergey, June 9, 2023, "Optical coherence tomography dataset", 
 > IEEE Dataport, doi: [[link](https://dx.doi.org/10.21227/fpvs-8n55)]
 
 Requirements:
@@ -54,18 +53,19 @@ In this work we use folder-form dataset structure:
     ├── val
     ├── test
 ```
-Unzip the archives to `./OCTDL_folder` and use `preprocessing.py` for image preprocessing and dataset preparation:
+Unzip the archive to the directory and use `preprocessing.py` for image preprocessing and dataset preparation:
 ```
 python preprocessing.py
 ```
 Optional arguments:
 ```
---dataset_folder', type=str, default='./OCTDL_folder', help='path to dataset folder')
+--dataset_folder', type=str, default='./OCT_dataset', help='path to dataset folder')
+--labels_path', type=str, default='./OCTDL_dataset/labels.csv', help='path to labels.csv'
 --output_folder', type=str, default='./dataset', help='path to output folder')
 --crop_ratio', type=int, default=1, help='central crop ratio of image')
 --image_dim', type=int, default=512, help='final dimensions of image')
---val_ratio', type=float, default=0.1, help='validation size')
---test_ratio', type=float, default=0.2, help='test size')
+--val_ratio', type=float, default=0.15, help='validation size')
+--test_ratio', type=float, default=0.25, help='test size')
 --padding', type=bool, default=False, help='padding to square')
 ```
 
@@ -81,10 +81,7 @@ Optional arguments:
 -p                Print configs before training
 ```
 
-Use Hydra to run multiple jobs with different arguments with a single command
-```
-python3 main.py train.network=resnet50,vgg16 -m
-```
+
 
 ## Resources
 
@@ -96,8 +93,8 @@ python3 main.py train.network=resnet50,vgg16 -m
 @data{fpvs-8n55-23,
 doi = {10.21227/fpvs-8n55},
 url = {https://dx.doi.org/10.21227/fpvs-8n55},
-author = {Kulyabin, Mikhail and Zhdanov, Aleksei and Nikiforova, Anastasia and Stepichev, Andrey and Kuznetsova, Anna and Borisov, Vasilii and Ronkin, Mikhail and Bogachev, Alexander and Korotkich, Sergey},
+author = {Kulyabin, Mikhail and Zhdanov, Aleksei and Borisov, Vasilii and Ronkin, Mikhail and Andrey, Stepichev and Anna, Kuznetsova and Anastasia, Nikiforova and Alexander, Bogachev and Sergey, Korotkich},
 publisher = {IEEE Dataport},
-title = {OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods},
-year = {2023} } 
+title = {Optical coherence tomography database},
+year = {2023} }
 ```
