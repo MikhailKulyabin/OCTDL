@@ -90,11 +90,9 @@ Optional arguments:
 
 ## Citation
 ```
-@data{fpvs-8n55-23,
-doi = {10.21227/fpvs-8n55},
-url = {https://dx.doi.org/10.21227/fpvs-8n55},
-author = {Kulyabin, Mikhail and Zhdanov, Aleksei and Borisov, Vasilii and Ronkin, Mikhail and Andrey, Stepichev and Anna, Kuznetsova and Anastasia, Nikiforova and Alexander, Bogachev and Sergey, Korotkich},
-publisher = {IEEE Dataport},
-title = {Optical coherence tomography database},
-year = {2023} }
+@article{kulyabin2023octdl,
+  title={OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods},
+  author={Kulyabin, Mikhail and Zhdanov, Aleksei and Nikiforova, Anastasia and Stepichev, Andrey and Kuznetsova, Anna and Ronkin, Mikhail and Borisov, Vasilii and Bogachev, Alexander and Korotkich, Sergey and Constable, Paul A and others},
+  journal={arXiv preprint arXiv:2312.08255},
+  year={2023}}
 ```
