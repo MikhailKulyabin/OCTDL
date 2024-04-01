@@ -20,8 +20,8 @@ The database consists of the following categories and images:
 - Retinal Vein Occlusion (RVO): 101
 - Vitreomacular Interface Disease (VID): 76
 
-> Mikhail Kulyabin, Aleksei Zhdanov, Vasilii Borisov, Mikhail Ronkin, Stepichev Andrey, Kuznetsova Anna, Nikiforova Anastasia, Bogachev Alexander, Korotkich Sergey, June 9, 2023, "Optical coherence tomography dataset", 
-> IEEE Dataport, doi: [[link](https://dx.doi.org/10.21227/fpvs-8n55)]
+> Mikhail Kulyabin, Aleksei Zhdanov, Vasilii Borisov, Mikhail Ronkin, Stepichev Andrey, Kuznetsova Anna, Nikiforova Anastasia, Bogachev Alexander, Korotkich Sergey, March 18, 2024, "OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods", 
+> Mendeley Data, doi: [[link](https://dx.doi.org/10.17632/sncdhf53xc)]
 
 Requirements:
 - pytorch
