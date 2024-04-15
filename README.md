@@ -20,8 +20,10 @@ The database consists of the following categories and images:
 - Retinal Vein Occlusion (RVO): 101
 - Vitreomacular Interface Disease (VID): 76
 
-> Mikhail Kulyabin, Aleksei Zhdanov, Vasilii Borisov, Mikhail Ronkin, Stepichev Andrey, Kuznetsova Anna, Nikiforova Anastasia, Bogachev Alexander, Korotkich Sergey, March 18, 2024, "OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods", 
-> Mendeley Data, doi: [[link](https://dx.doi.org/10.17632/sncdhf53xc)]
+For more information and details about the dataset see:
+https://rdcu.be/dELrE
+https://arxiv.org/abs/2312.08255
+
 
 Requirements:
 - pytorch
@@ -90,9 +92,17 @@ Optional arguments:
 
 ## Citation
 ```
-@article{kulyabin2023octdl,
+@article{kulyabin2024octdl,
   title={OCTDL: Optical Coherence Tomography Dataset for Image-Based Deep Learning Methods},
-  author={Kulyabin, Mikhail and Zhdanov, Aleksei and Nikiforova, Anastasia and Stepichev, Andrey and Kuznetsova, Anna and Ronkin, Mikhail and Borisov, Vasilii and Bogachev, Alexander and Korotkich, Sergey and Constable, Paul A and others},
-  journal={arXiv preprint arXiv:2312.08255},
-  year={2023}}
+  author={Kulyabin, Mikhail and Zhdanov, Aleksei and Nikiforova, Anastasia and Stepichev, Andrey 
+          and Kuznetsova, Anna and Ronkin, Mikhail and Borisov, Vasilii and Bogachev, Alexander 
+          and Korotkich, Sergey and Constable, Paul A and Maier, Andreas},
+  journal={Scientific Data},
+  volume={11},
+  number={1},
+  pages={365},
+  year={2024},
+  publisher={Nature Publishing Group UK London},
+  doi={https://doi.org/10.1038/s41597-024-03182-7}
+}
 ```
